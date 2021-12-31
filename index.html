@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Citizen Events Calendar</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="d-flex justify-content-center">
+      <ul id="events" class="list-group" style="list-style-type: none"></ul>
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/dayjs.min.js"
+      integrity="sha512-bwD3VD/j6ypSSnyjuaURidZksoVx3L1RPvTkleC48SbHCZsemT3VKMD39KknPnH728LLXVMTisESIBOAb5/W0Q=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/utc.min.js"
+      integrity="sha512-TU4ndEYOqql+pMXn14M8RDWsjjD+VPUA2RoWSuuFd+blPJW4oLrL1w1zAGdlrk4jsE2FEBH5CU3+fmogVYEqIQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/timezone.min.js"
+      integrity="sha512-72V2JNSAxd3rsQIpDSAbCTQXD6gi91Cd/IFZ6NYwRjZSiIlIJfDrJLXq+UomWstOg+zGHWFfkTDl3APEUMoqlw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.7/plugin/relativeTime.min.js"
+      integrity="sha512-7YYTlJ8OTdmDMztOy8q+zfRI/+y/IWnVp1oS4kiTKa+X2P09k/ObWUemEjtMoumu8v4A0s1NZu7WjfR+UxhRCQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script>
+      dayjs.extend(window.dayjs_plugin_utc);
+      dayjs.extend(window.dayjs_plugin_timezone);
+      dayjs.extend(window.dayjs_plugin_relativeTime);
+      const userTimezone = dayjs.tz.guess();
+      const now = dayjs();
+      const events = [
+        {
+          name: "Jumptown 2.0",
+          text: "December 23 - 01:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Thu, 23 Dec 2021 01:00:00 GMT",
+          end: "Thu, 23 Dec 2021 07:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "December 23 - 18:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Thu, 23 Dec 2021 18:00:00 GMT",
+          end: "Fri, 24 Dec 2021 00:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "December 24 - 01:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Fri, 24 Dec 2021 01:00:00 GMT",
+          end: "Fri, 24 Dec 2021 07:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "December 24 - 18:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Fri, 24 Dec 2021 18:00:00 GMT",
+          end: "Sat, 25 Dec 2021 00:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "December 25 - 01:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Sat, 25 Dec 2021 01:00:00 GMT",
+          end: "Sat, 25 Dec 2021 07:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "December 26 - 00:00 UTC (Duration: 48hr)",
+          timezone: "UTC",
+          duration: "48",
+          start: "Sun, 26 Dec 2021 00:00:00 GMT",
+          end: "Tue, 28 Dec 2021 00:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "December 30 - 13:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Thu, 30 Dec 2021 13:00:00 GMT",
+          end: "Thu, 30 Dec 2021 19:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "December 31 - 01:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Fri, 31 Dec 2021 01:00:00 GMT",
+          end: "Fri, 31 Dec 2021 07:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "December 31 - 18:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Fri, 31 Dec 2021 18:00:00 GMT",
+          end: "Sat, 01 Jan 2022 00:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "January 1 - 01:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Sat, 01 Jan 2022 01:00:00 GMT",
+          end: "Sat, 01 Jan 2022 07:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "January 3 - 13:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Mon, 03 Jan 2022 13:00:00 GMT",
+          end: "Mon, 03 Jan 2022 19:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "January 4 - 01:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Tue, 04 Jan 2022 01:00:00 GMT",
+          end: "Tue, 04 Jan 2022 07:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "January 4 - 18:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Tue, 04 Jan 2022 18:00:00 GMT",
+          end: "Wed, 05 Jan 2022 00:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "January 5 - 01:00 UTC (Duration: 6hr)",
+          timezone: "UTC",
+          duration: "6",
+          start: "Wed, 05 Jan 2022 01:00:00 GMT",
+          end: "Wed, 05 Jan 2022 07:00:00 GMT",
+        },
+        {
+          name: "Jumptown 2.0",
+          text: "January 14 - 00:00 UTC (Duration: 48hr)",
+          timezone: "UTC",
+          duration: "48",
+          start: "Fri, 14 Jan 2022 00:00:00 GMT",
+          end: "Sun, 16 Jan 2022 00:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "December 28 - 15:00 UTC",
+          timezone: "UTC",
+          start: "Tue, 28 Dec 2021 15:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "December 29 - 00:00 UTC",
+          timezone: "UTC",
+          start: "Wed, 29 Dec 2021 00:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "December 29 - 12:00 UTC",
+          timezone: "UTC",
+          start: "Wed, 29 Dec 2021 12:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "December 30 - 00:00 UTC",
+          timezone: "UTC",
+          start: "Thu, 30 Dec 2021 00:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "January 1 - 15:00 UTC",
+          timezone: "UTC",
+          start: "Sat, 01 Jan 2022 15:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "January 2 - 00:00 UTC",
+          timezone: "UTC",
+          start: "Sun, 02 Jan 2022 00:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "January 2 - 12:00 UTC",
+          timezone: "UTC",
+          start: "Sun, 02 Jan 2022 12:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "January 3 - 00:00 UTC",
+          timezone: "UTC",
+          start: "Mon, 03 Jan 2022 00:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "January 6 - 15:00 UTC",
+          timezone: "UTC",
+          start: "Thu, 06 Jan 2022 15:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "January 7 - 00:00 UTC",
+          timezone: "UTC",
+          start: "Fri, 07 Jan 2022 00:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "January 7 - 12:00 UTC",
+          timezone: "UTC",
+          start: "Fri, 07 Jan 2022 12:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "January 8 - 00:00 UTC",
+          timezone: "UTC",
+          start: "Sat, 08 Jan 2022 00:00:00 GMT",
+        },
+      ]
+        .filter((event) => {
+          if (event.end) {
+            return now.diff(dayjs(event.end)) <= 0;
+          }
+          return now.diff(dayjs(event.start)) <= 0;
+        })
+        .sort((a, b) => dayjs(a.start) - dayjs(b.start));
+      const eventsList = document.getElementById("events");
+
+      events.forEach((event) => {
+        addEvent(event);
+      });
+
+      function addEvent(eventData) {
+        const duration = eventData.duration
+          ? `<span class="badge bg-primary rounded-pill">Duration: ${eventData.duration} hours</span>`
+          : "";
+
+        const end = eventData.end
+          ? `<h1 class="display-6"><strong>End</strong>: ${dayjs(eventData.end)
+              .tz(userTimezone, true)
+              .local()
+              .toDate()
+              .toLocaleString()}</h1>`
+          : "";
+
+        const startDiff = now.diff(dayjs(eventData.start));
+        const endDiff = now.diff(dayjs(eventData.end));
+        const isActive = startDiff >= 0 && endDiff < 0;
+
+        const relativeStartTime = `<span class="badge bg-info rounded-pill">${
+          isActive ? "Started" : "Starts"
+        } ${dayjs().to(dayjs(eventData.start))}</span>`;
+
+        const relativeEndTime =
+          eventData.end && isActive
+            ? `<span class="badge bg-danger rounded-pill">Ends ${dayjs().to(
+                dayjs(eventData.end)
+              )}</span>`
+            : "";
+
+        const activity = eventData.end
+          ? isActive
+            ? `<span class="badge bg-success rounded-pill">Active</span>`
+            : `<span class="badge bg-secondary rounded-pill">Finished</span>`
+          : "";
+
+        const eventHtml = `
+        <li class="list-group-item justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <h1 class="display-3">${eventData.name}</h1>
+            <h1 class="display-6"><strong>Start</strong>: ${dayjs(
+              eventData.start
+            )
+              .tz(userTimezone, true)
+              .local()
+              .toDate()
+              .toLocaleString()}</h1>
+            ${end}
+          </div>
+          ${startDiff >= 0 ? activity : ""}
+          ${relativeStartTime}
+          ${duration}
+          ${relativeEndTime}
+        </li>
+      `;
+
+        const li = document.createElement("li");
+        li.innerHTML = eventHtml;
+        eventsList.appendChild(li);
+      }
+    </script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+      integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
