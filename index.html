@@ -246,7 +246,7 @@
           if (event.end) {
             return now.diff(dayjs(event.end)) <= 0;
           }
-          return now.diff(dayjs(event.start)) <= 4 * 60 * 60 * 1000; // if event doesn't have an end time, still show the ones that started 4 hours ago
+          return now.diff(dayjs(event.start)) <= 5 * 60 * 60 * 1000; // if event doesn't have an end time, still show the ones that started 5 hours ago
         })
         .sort((a, b) => dayjs(a.start) - dayjs(b.start));
       const eventsList = document.getElementById("events");
