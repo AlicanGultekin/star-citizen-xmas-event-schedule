@@ -276,6 +276,10 @@
           isActive ? "Started" : "Starts"
         } ${dayjs().to(dayjs(eventData.start))}</span>`;
 
+        const disclaimer = !eventData.end
+          ? "</br>This event starts 1-2 hours after the noted start time, follow the ingame voice lines and look for the blockade on your map"
+          : "";
+
         const relativeEndTime =
           eventData.end && isActive
             ? `<span class="badge bg-danger rounded-pill">Ends ${dayjs().to(
@@ -290,24 +294,25 @@
           : "";
 
         const eventHtml = `
-        <li class="list-group-item justify-content-between align-items-start">
-          <div class="ms-2 me-auto">
-            <h1 class="display-3">${eventData.name}</h1>
-            <h1 class="display-6"><strong>Start</strong>: ${dayjs(
-              eventData.start
-            )
-              .tz(userTimezone, true)
-              .local()
-              .toDate()
-              .toLocaleString()}</h1>
-            ${end}
-          </div>
-          ${startDiff >= 0 ? activity : ""}
-          ${relativeStartTime}
-          ${duration}
-          ${relativeEndTime}
-        </li>
-      `;
+              <li class="list-group-item justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  <h1 class="display-3">${eventData.name}</h1>
+                  <h1 class="display-6"><strong>Start</strong>: ${dayjs(
+                    eventData.start
+                  )
+                    .tz(userTimezone, true)
+                    .local()
+                    .toDate()
+                    .toLocaleString()}</h1>
+                  ${end}
+                </div>
+                ${startDiff >= 0 ? activity : ""}
+                ${relativeStartTime}
+                ${duration}
+                ${relativeEndTime}
+                ${disclaimer}
+              </li>
+            `;
 
         const li = document.createElement("li");
         li.innerHTML = eventHtml;
