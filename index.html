@@ -47,8 +47,8 @@
       dayjs.extend(window.dayjs_plugin_timezone);
       dayjs.extend(window.dayjs_plugin_relativeTime);
       const userTimezone = dayjs.tz.guess();
-      const now = dayjs();
       const eventsList = document.getElementById("events");
+      let now = dayjs();
 
       const events = [
         {
@@ -255,6 +255,7 @@
       generateHtmlForAllEvents();
 
       function addEvent(eventData) {
+        now = dayjs();
         const duration = eventData.duration
           ? `<span class="badge bg-primary rounded-pill">Duration: ${eventData.duration} hours</span>`
           : "";
