@@ -48,6 +48,8 @@
       dayjs.extend(window.dayjs_plugin_relativeTime);
       const userTimezone = dayjs.tz.guess();
       const now = dayjs();
+      const eventsList = document.getElementById("events");
+
       const events = [
         {
           name: "Jumptown 2.0",
@@ -249,11 +251,8 @@
           return now.diff(dayjs(event.start)) <= 5 * 60 * 60 * 1000; // if event doesn't have an end time, still show the ones that started 5 hours ago
         })
         .sort((a, b) => dayjs(a.start) - dayjs(b.start));
-      const eventsList = document.getElementById("events");
 
-      events.forEach((event) => {
-        addEvent(event);
-      });
+      generateHtmlForAllEvents();
 
       function addEvent(eventData) {
         const duration = eventData.duration
@@ -318,6 +317,21 @@
         li.innerHTML = eventHtml;
         eventsList.appendChild(li);
       }
+
+      function generateHtmlForAllEvents() {
+        events.forEach((event) => {
+          addEvent(event);
+        });
+      }
+
+      function clearEvents() {
+        eventsList.innerHTML = "";
+      }
+
+      setInterval(() => {
+        clearEvents();
+        generateHtmlForAllEvents();
+      }, 60000); // re-render events every minute
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
