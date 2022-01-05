@@ -249,7 +249,7 @@
         events = events
           .filter((event) => {
             if (event.end) {
-              return now.diff(dayjs(event.end)) > 60 * 1000; // display a finished event for one minute
+              return now.diff(dayjs(event.end)) <= 60 * 1000; // display a finished event for one minute
             }
             return now.diff(dayjs(event.start)) <= 5 * 60 * 60 * 1000; // if event doesn't have an end time, still show the ones that started 5 hours ago
           })
