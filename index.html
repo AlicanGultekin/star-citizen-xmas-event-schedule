@@ -50,7 +50,7 @@
       const eventsList = document.getElementById("events");
       let now = dayjs();
 
-      const events = [
+      let events = [
         {
           name: "Jumptown 2.0",
           text: "December 23 - 01:00 UTC (Duration: 6hr)",
@@ -243,16 +243,18 @@
           timezone: "UTC",
           start: "Sat, 08 Jan 2022 00:00:00 GMT",
         },
-      ]
-        .filter((event) => {
-          if (event.end) {
-            return now.diff(dayjs(event.end)) <= 0;
-          }
-          return now.diff(dayjs(event.start)) <= 5 * 60 * 60 * 1000; // if event doesn't have an end time, still show the ones that started 5 hours ago
-        })
-        .sort((a, b) => dayjs(a.start) - dayjs(b.start));
+      ];
 
-      generateHtmlForAllEvents();
+      function filterAndSortEvents() {
+        events = events
+          .filter((event) => {
+            if (event.end) {
+              return now.diff(dayjs(event.end)) > 60 * 1000; // display a finished event for one minute
+            }
+            return now.diff(dayjs(event.start)) <= 5 * 60 * 60 * 1000; // if event doesn't have an end time, still show the ones that started 5 hours ago
+          })
+          .sort((a, b) => dayjs(a.start) - dayjs(b.start));
+      }
 
       function addEvent(eventData) {
         now = dayjs();
@@ -329,10 +331,14 @@
         eventsList.innerHTML = "";
       }
 
+      filterAndSortEvents();
+      generateHtmlForAllEvents();
+
       setInterval(() => {
+        filterAndSortEvents();
         clearEvents();
         generateHtmlForAllEvents();
-      }, 60000); // re-render events every minute
+      }, 60 * 1000); // re-render events every minute
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
