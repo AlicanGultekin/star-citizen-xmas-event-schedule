@@ -272,7 +272,7 @@
 
         const startDiff = now.diff(dayjs(eventData.start));
         const endDiff = now.diff(dayjs(eventData.end));
-        const isActive = startDiff >= 0 && endDiff < 0;
+        const isActive = startDiff > 0 && endDiff <= 0;
 
         const relativeStartTime = `<span class="badge bg-info rounded-pill">${
           isActive ? "Started" : "Starts"
