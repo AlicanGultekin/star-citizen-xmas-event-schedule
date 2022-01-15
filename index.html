@@ -165,11 +165,11 @@
         },
         {
           name: "Jumptown 2.0",
-          text: "January 14 - 00:00 UTC (Duration: 48hr)",
+          text: "January 14 - 00:00 UTC (Duration: 74hr)",
           timezone: "UTC",
-          duration: "48",
+          duration: "74",
           start: "Fri, 14 Jan 2022 00:00:00 GMT",
-          end: "Sun, 16 Jan 2022 00:00:00 GMT",
+          end: "Mon, 17 Jan 2022 02:00:00 GMT",
         },
         {
           name: "Ninetails Lockdown",
@@ -332,13 +332,19 @@
       }
 
       filterAndSortEvents();
-      generateHtmlForAllEvents();
-
-      setInterval(() => {
-        filterAndSortEvents();
-        clearEvents();
+      if (events.length > 0) {
         generateHtmlForAllEvents();
-      }, 60 * 1000); // re-render events every minute
+
+        setInterval(() => {
+          filterAndSortEvents();
+          clearEvents();
+          generateHtmlForAllEvents();
+        }, 60 * 1000); // re-render events every minute
+      } else {
+        const h1 = document.createElement("h1");
+        h1.innerHTML = ``;
+        eventsList.appendChild(h1);
+      }
     </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
