@@ -348,15 +348,19 @@
       }
 
       filterAndSortEvents();
+
+      let refreshEventsTimer;
       if (events.length > 0) {
         generateHtmlForAllEvents();
 
-        setInterval(() => {
+        refreshEventsTimer = setInterval(() => {
           filterAndSortEvents();
           clearEvents();
           generateHtmlForAllEvents();
         }, 60 * 1000); // re-render events every minute
       } else {
+        if (refreshEventsTimer) clearInterval(refreshEventsTimer);
+
         const h1 = document.createElement("h1");
         h1.innerHTML = `<p class="text-center">The events have ended for now, stay tuned for Xenothreat 3.0</p>`;
         eventsList.appendChild(h1);
