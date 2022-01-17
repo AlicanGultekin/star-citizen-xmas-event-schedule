@@ -347,23 +347,31 @@
         eventsList.innerHTML = "";
       }
 
-      filterAndSortEvents();
-
-      let refreshEventsTimer;
-      if (events.length > 0) {
-        generateHtmlForAllEvents();
-
-        refreshEventsTimer = setInterval(() => {
-          filterAndSortEvents();
-          clearEvents();
-          generateHtmlForAllEvents();
-        }, 60 * 1000); // re-render events every minute
-      } else {
-        if (refreshEventsTimer) clearInterval(refreshEventsTimer);
-
+      function showEventsEndedMessaging() {
+        clearEvents();
         const h1 = document.createElement("h1");
         h1.innerHTML = `<p class="text-center">The events have ended for now, stay tuned for Xenothreat 3.0</p>`;
         eventsList.appendChild(h1);
+      }
+
+      filterAndSortEvents();
+
+      if (events.length > 0) {
+        generateHtmlForAllEvents();
+
+        let refreshEventsTimer;
+        refreshEventsTimer = setInterval(() => {
+          if (events.length > 0) {
+            filterAndSortEvents();
+            clearEvents();
+            generateHtmlForAllEvents();
+          } else {
+            if (refreshEventsTimer) clearInterval(refreshEventsTimer);
+            showEventsEndedMessaging();
+          }
+        }, 60 * 1000); // re-render events every minute
+      } else {
+        showEventsEndedMessaging();
       }
     </script>
     <script
