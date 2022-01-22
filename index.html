@@ -259,6 +259,22 @@
           timezone: "UTC",
           start: "Sat, 08 Jan 2022 00:00:00 GMT",
         },
+        {
+          name: "[PTU] Xenothreat 3.0",
+          text: "January 22 - 18:00 UTC",
+          timezone: "UTC",
+          duration: "5",
+          start: "Sat, 22 Jan 2022 18:00:00 GMT",
+          end: "Sat, 22 Jan 2022 23:00:00 GMT",
+        },
+        {
+          name: "[PTU] Xenothreat 3.0",
+          text: "January 23 - 18:00 UTC",
+          timezone: "UTC",
+          duration: "5",
+          start: "Sat, 23 Jan 2022 18:00:00 GMT",
+          end: "Sat, 23 Jan 2022 23:00:00 GMT",
+        },
       ];
 
       function filterAndSortEvents() {
@@ -294,9 +310,11 @@
           isActive ? "Started" : "Starts"
         } ${dayjs().to(dayjs(eventData.start))}</span>`;
 
-        const disclaimer = !eventData.end
-          ? `</br></br>This event starts 1-2 hours after the noted start time, follow the ingame voice lines and look for the blockade on your map.`
-          : "</br></br>Production stops in the last hour of this event, you can still sell, but cannot get more boxes.";
+        const disclaimer;
+        // TODO: Have disclaimers in event data per event
+        // const disclaimer = !eventData.name
+        //   ? `</br></br>This event starts 1-2 hours after the noted start time, follow the ingame voice lines and look for the blockade on your map.`
+        //   : "</br></br>Production stops in the last hour of this event, you can still sell, but cannot get more boxes.";
 
         const relativeEndTime =
           eventData.end && isActive
