@@ -243,6 +243,80 @@
           timezone: "UTC",
           start: "Fri, 04 Mar 2022 20:00:00 GMT",
         },
+        {
+          name: "Jumptown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          duration: "53",
+          start: "Sat, 02 Jul 2022 00:00:00 GMT",
+          end: "Mon, 04 Dec 2022 05:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Thu, 30 Jun 2022 08:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Thu, 30 Jun 2022 14:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Thu, 30 Jun 2022 22:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Fri, 01 Jul 2022 08:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Fri, 01 Jul 2022 14:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Mon, 04 Jul 2022 08:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Mon, 04 Jul 2022 14:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Mon, 04 Jul 2022 22:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Tue, 05 Jul 2022 08:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Tue, 05 Jul 2022 14:00:00 GMT",
+        },
+        {
+          name: "Ninetails Lockdown",
+          text: "Dynamic Event Weekend",
+          timezone: "UTC",
+          start: "Tue, 05 Jul 2022 22:00:00 GMT",
+        },
       ];
 
       function filterAndSortEvents() {
@@ -258,6 +332,7 @@
 
       function addEvent(eventData) {
         now = dayjs();
+        console.log(eventData);
         const duration = eventData.duration
           ? `<span class="badge bg-primary rounded-pill">Duration: ${eventData.duration} hours</span>`
           : "";
